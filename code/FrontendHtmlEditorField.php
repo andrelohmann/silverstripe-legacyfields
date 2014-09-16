@@ -9,6 +9,6 @@ class FrontendHtmlEditorField extends HtmlEditorField {
 
     public static function include_js() {
         parent::include_js();
-        Requirements::customScript("ssTinyMceConfig.editor_selector='frontendhtmleditor';tinyMCE.init(ssTinyMceConfig);");
+        Requirements::customScript("ssTinyMceConfig.mode = 'specific_textareas';ssTinyMceConfig.editor_selector='frontendhtmleditor';tinyMCE.init(ssTinyMceConfig);");
     }
 }
