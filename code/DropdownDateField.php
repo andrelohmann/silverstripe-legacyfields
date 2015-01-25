@@ -117,7 +117,7 @@ class DropdownDateField extends DateField {
 			'31'=>'31'
 		);
 		
-		$fieldDay = DropdownField::create($this->name . '[day]', false, $dropdownDays, ($valArr) ? $valArr['day'] : null)->addExtraClass('day');
+		$fieldDay = DropdownField::create($this->name . '[day]', false, $dropdownDays, ($valArr) ? $valArr['day'] : null)->addExtraClass('day '.$this->extraClass());
 		
 		$dropdownMonths = array(
 			'NotSet' => $fieldNames['month'],
@@ -126,9 +126,9 @@ class DropdownDateField extends DateField {
 			'11'=>'11', '12'=>'12'
 		);
 		
-		$fieldMonth = DropdownField::create($this->name . '[month]', false, $dropdownMonths, ($valArr) ? $valArr['month'] : null)->addExtraClass('month');
+		$fieldMonth = DropdownField::create($this->name . '[month]', false, $dropdownMonths, ($valArr) ? $valArr['month'] : null)->addExtraClass('month '.$this->extraClass());
 		
-		$fieldYear = DropdownField::create($this->name . '[year]', false, $this->dropdownYears($fieldNames['year']), ($valArr) ? $valArr['year'] : null)->addExtraClass('year');
+		$fieldYear = DropdownField::create($this->name . '[year]', false, $this->dropdownYears($fieldNames['year']), ($valArr) ? $valArr['year'] : null)->addExtraClass('year '.$this->extraClass());
 		
 		$sep = $this->getConfig('dmyseparator');
 		$format = $this->getConfig('dateformat');
