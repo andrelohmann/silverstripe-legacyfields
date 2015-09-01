@@ -48,7 +48,7 @@ class DropdownDateField extends DateField {
 	 */
 	private static $default_config = array(
 		'showcalendar' => false,
-                'dateformat' => null,
+        'dateformat' => null,
 		'datavalueformat' => 'yyyy-MM-dd',
 		'dmyseparator' => '',
 		'range' => null,
@@ -75,7 +75,7 @@ class DropdownDateField extends DateField {
 	
 	public function __construct($name, $title = null, $value = null) {
             
-                Config::inst()->update('DateField', 'default_config', self::$default_config);
+        Config::inst()->update('DateField', 'default_config', self::$default_config);
 
 		parent::__construct($name, $title, $value);
 	}
