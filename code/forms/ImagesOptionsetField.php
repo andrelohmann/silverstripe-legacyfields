@@ -6,4 +6,6 @@
  * @subpackage legacyfields
  */
 
-class ImagesOptionsetField extends OptionsetField { }
+class ImagesOptionsetField extends OptionsetField
+{
+}
