@@ -63,40 +63,49 @@
  * @subpackage fields-files
  */
 
-class SimpleImageField extends FileField {
-	/**
-	 * @deprecated 2.5
-	 */
-	public $allowedExtensions = array('jpg','gif','png');
+class SimpleImageField extends FileField
+{
+    /**
+     * @deprecated 2.5
+     */
+    public $allowedExtensions = array('jpg','gif','png');
 
-	public function __construct($name, $title = null, $value = null) {
-		parent::__construct($name, $title, $value);
+    public function __construct($name, $title = null, $value = null)
+    {
+        parent::__construct($name, $title, $value);
 
-		$this->getValidator()->setAllowedExtensions(array('jpg','gif','png'));
-	}
+        $this->getValidator()->setAllowedExtensions(array('jpg', 'gif', 'png'));
+    }
 
-	public function Field($properties = array()) {
-            // Fetch the Field Record
-	    if($this->form) $record = $this->form->getRecord();
-	    $fieldName = $this->name;
-	    if(isset($record)&&$record) {
-	    	$imageField = $record->$fieldName();
-                if($imageField && $imageField->exists()){
-                    if($imageField->hasMethod('Thumbnail') && $imageField->Thumbnail()) $Image = $imageField->Thumbnail()->getURL();
-                    else if($imageField->CMSThumbnail()) $Image = $imageField->CMSThumbnail()->getURL();
-                    else $Image = false;
-                }else{
+    public function Field($properties = array())
+    {
+        // Fetch the Field Record
+        if ($this->form) {
+            $record = $this->form->getRecord();
+        }
+        $fieldName = $this->name;
+        if (isset($record)&&$record) {
+            $imageField = $record->$fieldName();
+            if ($imageField && $imageField->exists()) {
+                if ($imageField->hasMethod('Thumbnail') && $imageField->Thumbnail()) {
+                    $Image = $imageField->Thumbnail()->getURL();
+                } elseif ($imageField->CMSThumbnail()) {
+                    $Image = $imageField->CMSThumbnail()->getURL();
+                } else {
                     $Image = false;
                 }
-            }else{
+            } else {
                 $Image = false;
             }
+        } else {
+            $Image = false;
+        }
             
-            $properties = array_merge($properties, array(
+        $properties = array_merge($properties, array(
                 'MaxFileSize' => $this->getValidator()->getAllowedMaxFileSize(),
                 'Image' => $Image
             ));
-		
-            return parent::Field($properties);
-	}
+        
+        return parent::Field($properties);
+    }
 }
